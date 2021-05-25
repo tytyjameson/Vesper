@@ -12,7 +12,7 @@ const Bartender = (props) => {
       .then((updatedData) => {
         if (isMounted) {
           setDrink(updatedData);
-          // getIngredients();
+          getIngredients();
           props.openDrink(updatedData);
         }
       })
@@ -27,7 +27,7 @@ const Bartender = (props) => {
     let index = 1;
     const curIngred = [];
     // console.log(drink['strIngredient'+index])
-    while (drink['strIngredient' + index] !== null) {
+    while (!drink['strIngredient' + index]) {
       curIngred.push(drink['strIngredient' + index]);
       index++;
     }
@@ -38,8 +38,8 @@ const Bartender = (props) => {
     <div tabIndex="-1" className="bartender">
       <div className="bartender-content" onClick={props.popupClick}>
         {/* <p>{ingred}</p> */}
-        <img id="drinkImage" src={drink.strDrinkThumb} alt="" />
         <h2>{drink.strDrink}</h2>
+        <img id="drinkImage" src={drink.strDrinkThumb} alt="" />
         <p>{drink.strInstructions}</p>
       </div>
     </div>
